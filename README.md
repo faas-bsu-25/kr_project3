@@ -25,13 +25,13 @@
 <nav>
   <h2>Project Documents</h2>
   <ul>
-    <li><a href="" target="_blank"></a></li>
+    <li><a href="https://itch.io/c/6544771/cs-315-project-3" target="_blank">Assets Collection</a></li>
     <li><a href="" target="_blank"></a></li>
     <li><a href="" target="_blank"></a></li>
   </ul>
 
   <h2>Useful Links</h2>
-  <h3>Anticipated Necessity</h3>
+  <h3>Godot Docs</h3>
   <ul>
     <li><a href="https://docs.godotengine.org/en/stable/tutorials/ui/gui_using_theme_editor.html" target="_blank">
       Using the theme editor
