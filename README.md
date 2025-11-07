@@ -46,6 +46,16 @@
       Using TileSets
     </a></li>
   </ul>
+  <h3>Elsewhere</h3>
+  <ul>
+    <li><a href="https://github.com/github/gitignore/tree/main/Global" target="_blank">
+      Global/Application <code>.gitignore</code> presets
+    </a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
 </nav>
 
 <hr>
