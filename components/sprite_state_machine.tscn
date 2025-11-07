@@ -1,56 +1,37 @@
-[gd_scene load_steps=12 format=3 uid="uid://duudbmfp78pm3"]
+[gd_scene load_steps=17 format=3 uid="uid://duudbmfp78pm3"]
 
-[ext_resource type="Script" uid="uid://cno5jb4vql1lp" path="res://scripts/player_state_manager.gd" id="1_j4bpf"]
+[ext_resource type="Script" uid="uid://cno5jb4vql1lp" path="res://scripts/sprite_state_machine.gd" id="1_j4bpf"]
+[ext_resource type="Texture2D" uid="uid://cccvxsdw6l8u0" path="res://assets/1bit_pack.png" id="2_se1uw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puyon"]
+atlas = ExtResource("2_se1uw")
+region = Rect2(482, 65, 12, 14)
 
 [sub_resource type="Animation" id="Animation_68npl"]
 resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath("SpriteStateMachine/Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, 3)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:scale:x")
+tracks/1/path = NodePath("SpriteStateMachine/Sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:scale:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(3, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_jnykh"]
@@ -60,26 +41,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:scale:x")
-tracks/0/interp = 2
+tracks/0/path = NodePath("SpriteStateMachine/Sprite:scale")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.25, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [3.1, 2.9, 3.1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:scale:y")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.25, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [2.9, 3.1, 2.9]
+"values": [Vector2(3.1, 2.9), Vector2(2.9, 3.1), Vector2(3.1, 2.9)]
 }
 
 [sub_resource type="Animation" id="Animation_v8ogu"]
@@ -89,7 +58,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("SpriteStateMachine/Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -106,40 +75,58 @@ _data = {
 &"walk": SubResource("Animation_v8ogu")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_se1uw"]
+animation = &"RESET"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7ucm"]
 animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jnykh"]
 animation = &"walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_68npl"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v8ogu"]
-advance_mode = 2
-advance_expression = "self.state == State.WALKING"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7hpyj"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_puyon"]
 advance_mode = 2
 advance_expression = "self.state == State.IDLE"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jt7o8"]
+advance_mode = 2
+advance_expression = "self.state == State.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2wq5u"]
+advance_mode = 2
+advance_expression = "self.state == State.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vi67c"]
+advance_mode = 2
+advance_expression = "self.state == State.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rw7vq"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jd23p"]
-states/End/position = Vector2(495, 216)
+states/End/position = Vector2(481, 216)
+states/RESET/node = SubResource("AnimationNodeAnimation_se1uw")
+states/RESET/position = Vector2(343, 216)
 states/Start/position = Vector2(194, 216)
 states/idle/node = SubResource("AnimationNodeAnimation_t7ucm")
-states/idle/position = Vector2(343, 153)
+states/idle/position = Vector2(343, 123)
 states/walk/node = SubResource("AnimationNodeAnimation_jnykh")
-states/walk/position = Vector2(343, 281)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_68npl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_v8ogu"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_7hpyj")]
+states/walk/position = Vector2(343, 308)
+transitions = ["walk", "RESET", SubResource("AnimationNodeStateMachineTransition_puyon"), "RESET", "idle", SubResource("AnimationNodeStateMachineTransition_jt7o8"), "idle", "RESET", SubResource("AnimationNodeStateMachineTransition_2wq5u"), "RESET", "walk", SubResource("AnimationNodeStateMachineTransition_vi67c"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_rw7vq")]
 
-[node name="PlayerStateManager" type="Node"]
+[node name="SpriteStateMachine" type="Node2D"]
 script = ExtResource("1_j4bpf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_puyon")
 
 [node name="SpriteAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_7hpyj")
 }
+autoplay = "RESET"
 
 [node name="SpriteAnimTree" type="AnimationTree" parent="."]
 root_node = NodePath("../..")

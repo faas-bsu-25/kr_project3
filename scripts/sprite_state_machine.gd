@@ -1,4 +1,4 @@
-@icon("res://assets/node_icons/player_state_manager.png")
+@icon("res://assets/node_icons/sprite_state_machine.png")
 class_name PlayerStateManager
 extends Node
 
@@ -10,11 +10,7 @@ enum State {IDLE, WALKING}
 @export var state: State = State.IDLE
 
 @onready var player: Player = get_parent()
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var sprite: Sprite2D = $Sprite
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

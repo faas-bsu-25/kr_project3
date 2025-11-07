@@ -1,18 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://etind5g7bnxw"]
+[gd_scene load_steps=6 format=3 uid="uid://etind5g7bnxw"]
 
-[ext_resource type="Texture2D" uid="uid://cccvxsdw6l8u0" path="res://assets/1bit_pack.png" id="1_4jpjy"]
 [ext_resource type="Script" uid="uid://dgh527mrup21n" path="res://scripts/player.gd" id="1_e1ixn"]
-[ext_resource type="PackedScene" uid="uid://duudbmfp78pm3" path="res://components/player_state_manager.tscn" id="3_t7ucm"]
+[ext_resource type="PackedScene" uid="uid://duudbmfp78pm3" path="res://components/sprite_state_machine.tscn" id="3_t7ucm"]
 
 [sub_resource type="SystemFont" id="SystemFont_wvnpy"]
 subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_4jpjy"]
 font = SubResource("SystemFont_wvnpy")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1ixn"]
-atlas = ExtResource("1_4jpjy")
-region = Rect2(482, 65, 12, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7ucm"]
 size = Vector2(36, 21)
@@ -41,9 +36,7 @@ position = Vector2(960, 540)
 motion_mode = 1
 script = ExtResource("1_e1ixn")
 
-[node name="Sprite" type="Sprite2D" parent="Player"]
-scale = Vector2(3, 3)
-texture = SubResource("AtlasTexture_e1ixn")
+[node name="SpriteStateMachine" parent="Player" instance=ExtResource("3_t7ucm")]
 
 [node name="Shape" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 10.5)
@@ -51,5 +44,3 @@ shape = SubResource("RectangleShape2D_t7ucm")
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
-
-[node name="PlayerStateManager" parent="Player" instance=ExtResource("3_t7ucm")]
