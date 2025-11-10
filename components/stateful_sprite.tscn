@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://duudbmfp78pm3"]
 
-[ext_resource type="Script" uid="uid://cno5jb4vql1lp" path="res://scripts/sprite_state_machine.gd" id="1_j4bpf"]
-[ext_resource type="Texture2D" uid="uid://cccvxsdw6l8u0" path="res://assets/1bit_pack.png" id="2_se1uw"]
+[ext_resource type="Texture2D" uid="uid://cp4nvqeyfchf4" path="res://assets/1bit_pack_alpha.png" id="1_uic3t"]
+[ext_resource type="Script" uid="uid://cno5jb4vql1lp" path="res://scripts/stateful_sprite.gd" id="2_gahnr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_puyon"]
-atlas = ExtResource("2_se1uw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2g53"]
+atlas = ExtResource("1_uic3t")
 region = Rect2(482, 65, 12, 14)
 
 [sub_resource type="Animation" id="Animation_68npl"]
@@ -12,7 +12,7 @@ resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteStateMachine/Sprite:position")
+tracks/0/path = NodePath("StatefulSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +24,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteStateMachine/Sprite:scale")
+tracks/1/path = NodePath("StatefulSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,7 +41,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteStateMachine/Sprite:scale")
+tracks/0/path = NodePath("StatefulSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,7 +58,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteStateMachine/Sprite:position")
+tracks/0/path = NodePath("StatefulSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -113,13 +113,12 @@ states/idle/position = Vector2(343, 123)
 states/walk/node = SubResource("AnimationNodeAnimation_jnykh")
 states/walk/position = Vector2(343, 308)
 transitions = ["walk", "RESET", SubResource("AnimationNodeStateMachineTransition_puyon"), "RESET", "idle", SubResource("AnimationNodeStateMachineTransition_jt7o8"), "idle", "RESET", SubResource("AnimationNodeStateMachineTransition_2wq5u"), "RESET", "walk", SubResource("AnimationNodeStateMachineTransition_vi67c"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_rw7vq")]
+graph_offset = Vector2(0, 83.45678)
 
-[node name="SpriteStateMachine" type="Node2D"]
-script = ExtResource("1_j4bpf")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
-texture = SubResource("AtlasTexture_puyon")
+[node name="StatefulSprite" type="Sprite2D"]
+scale = Vector2(2.9371128, 3.0628872)
+texture = SubResource("AtlasTexture_u2g53")
+script = ExtResource("2_gahnr")
 
 [node name="SpriteAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

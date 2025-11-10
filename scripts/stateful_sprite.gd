@@ -1,5 +1,5 @@
-@icon("res://assets/node_icons/sprite_state_machine.png")
-class_name PlayerStateManager
+@icon("res://assets/node_icons/stateful_sprite.png")
+class_name StatefulSprite
 extends Node
 
 
@@ -10,7 +10,6 @@ enum State {IDLE, WALKING}
 @export var state: State = State.IDLE
 
 @onready var player: Player = get_parent()
-@onready var sprite: Sprite2D = $Sprite
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,5 +22,5 @@ func _process(_delta: float) -> void:
 		state_changed.emit(State.WALKING)
 
 
-func _on_state_changed(new_state: PlayerStateManager.State) -> void:
+func _on_state_changed(new_state: StatefulSprite.State) -> void:
 	self.state = new_state
