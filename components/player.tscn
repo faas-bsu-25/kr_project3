@@ -12,7 +12,7 @@ motion_mode = 1
 script = ExtResource("1_uapwn")
 
 [node name="StatefulSprite" parent="." instance=ExtResource("2_5odhx")]
-scale = Vector2(3.0924158, 2.9075842)
+scale = Vector2(3, 3)
 texture = ExtResource("3_1kub6")
 
 [node name="Shape" type="CollisionShape2D" parent="."]

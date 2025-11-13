@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://0d6dusonbs33"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://0d6dusonbs33"]
 
 [ext_resource type="Texture2D" uid="uid://c2ntg4ce47023" path="res://resources/ground_tile_atlas.tres" id="1_a344r"]
 
@@ -42,6 +42,24 @@ texture = ExtResource("1_a344r")
 7:2/0 = 0
 7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a344r"]
+texture = ExtResource("1_a344r")
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:2/0 = 0
+1:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+2:2/0 = 0
+0:2/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ulsyq")
+sources/1 = SubResource("TileSetAtlasSource_a344r")

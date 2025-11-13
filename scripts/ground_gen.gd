@@ -7,6 +7,7 @@ extends TileMapLayer
 const NUM_TILES_IN_ROW = 8;
 
 @export var map_size: Vector2 = Vector2(100, 100)
+@export_enum("Ground", "Forest") var tiles_theme: int = 1
 
 @export_tool_button(
 	"Generate Map", 
@@ -26,7 +27,7 @@ const NUM_TILES_IN_ROW = 8;
 @export var noise_seed: int = 0
 @export var fractal_gain: float = 0.5
 @export var fractal_octaves: int = 1
-@export var empty_tile_chance: float = 0.8
+@export_range(0.0, 1.0, 0.01) var empty_tile_chance: float = 0.8
 
 @export_tool_button(
 	"Randomize Seed", 
@@ -65,17 +66,31 @@ func _generate_map() -> void:
 			if randf_range(0.01, 1.00) <= empty_tile_chance:
 				continue
 			
-			var noise_value: int = _parse_noise_value_at(x, y)
-			var tile_set_coords := Vector2(noise_value % NUM_TILES_IN_ROW, noise_value / NUM_TILES_IN_ROW)
-			self.set_cell(Vector2(x, y), 0, tile_set_coords)
+			self.set_cell(Vector2i(x, y), 0, _convert_noise_to_coords_at(x, y))
 
 
-func _parse_noise_value_at(x: int, y: int) -> int:
+func _convert_noise_to_coords_at(x: int, y: int) -> Vector2i:
+	var noise_value := _noise_to_index(x, y)
+	return _index_to_coords(noise_value)
+
+
+func _noise_to_index(x: int, y: int) -> int:
 	## get_noise_2d is of range [-1, 1]...
 	var noise_value := noise.get_noise_2d(x, y)
-	## so remap() fits it to range [0, 23], which is our number of tiles in the set.
-	var noise_value_remapped := remap(noise_value, -1, 1, 1, 23)
+	## so remap() fits it to range of the current source, which is our number of tiles in the set.
+	var noise_value_remapped := remap(noise_value, -1, 1, 0, _num_tiles_in_theme() - 1)
 	## finally, the value is rounded to an integer.
 	var noise_value_i := roundi(noise_value_remapped)
 	
 	return noise_value_i
+
+
+func _num_tiles_in_theme() -> int:
+	return self.tile_set.get_source(tiles_theme).get_tiles_count()
+
+
+func _index_to_coords(index: int) -> Vector2i:
+	if index < 0 or index > _num_tiles_in_theme():
+		return Vector2(-1, -1)
+	else:
+		return self.tile_set.get_source(tiles_theme).get_tile_id(index)
