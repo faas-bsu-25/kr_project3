@@ -23,7 +23,7 @@
     <h2>Project Documents</h2>
     <ul>
         <li><a href="https://itch.io/c/6544771/cs-315-project-3" target="_blank">Assets Collection</a></li>
-        <li><a href="" target="_blank"></a></li>
+        <li><a href="https://kxttykxt.itch.io/fate-of-angora" target="_blank">itch.io Page</a></li>
         <li><a href="" target="_blank"></a></li>
     </ul>
     <h2>Useful Links</h2>
