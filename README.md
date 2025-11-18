@@ -1,5 +1,5 @@
 <header>
-    <h1>Project 3 - Fate of Angora</h1>
+    <h1>Project 3 - Soulbound</h1>
     <h6 role="subtitle">Kat R. | CS 315.2 - Game programming </h6>
     <p>This final project for CS 315 is completely unguided. Students must...</p>
     <ol>
@@ -127,6 +127,19 @@
                     Making at least one commit every day shall remind me that I enjoy it,
                     and hopefully I will then dread it far less.
                 </p>
+            </details>
+        </article>
+        <article>
+            <h3>Week of 11/17/25</h3>
+            <details>
+                <summary><u><b>Homewardbound to Soulbound</b></u></summary>
+                <p>
+                    I have decided to scrap Fate of Angora. The development felt forced, and I was too rigid with too new an idea. It felt like a chore. My heart just wasn't in it. The important part now is that I have learned a whole lot of valuable material from my preliminary work on Fate of Angora. Noise-based procedural tilemap generation alone feels like a feat in its own right.
+                </p>
+                <p>
+                    Scrapping an entire project a couple weeks into the (pre?)-production cycle is not an action I take lightly (even though I've done it once already). I assessed the time left to complete the project and whether a switch to a more ambitious project was a good idea. Given the fact that I've been brainstorming Soulbound off and on for literal years means I have a streamlined structure for how to get there.
+                </p>
+                <p>More context can be found in this commit, "Scrap Angora and switch gears!"</p>
             </details>
         </article>
     </section>
