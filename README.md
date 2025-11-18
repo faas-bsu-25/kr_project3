@@ -62,6 +62,8 @@
         <article>
             <h3>Week of: 11/3/25</h3>
             <details>
+                <summary><u><b>Project Initialization and <code>StatefulSprite</code></b></u></summary>
+                <br>
                 <p>During the week of 11/3, some notable things happened.</p>
                 <ol>
                     <li>I created a project pitch for Fate of Angora.</li>
@@ -76,6 +78,54 @@
                     In a case like this, I can pick and choose what states I may want a certain character to have.
                     For example, bats can fly, but they definitely don't walk. Players can walk, but they definitely can't fly.
                     They can both utilize the shared code of the StatefulSprite while still offering a great deal of customization.
+                </p>
+            </details>
+        </article>
+        <article>
+            <h3>Week of 11/10/25</h3>
+            <details>
+                <summary><u><b>Procedural Map Generation and itch.io Page</b></u></summary>
+                <br>
+                <p>
+                    Some crucial things happened this week. 
+                    However, I am sorry to admit that, despite this, 
+                    not much time was spent developing the game this week.
+                </p>
+                <p>First and foremost, let's see what happened in this week's commits.</p>
+                <ul>
+                    <li><code>SpriteStateMachine</code> was renamed/refactored to <code>StatefulSprite</code>.</li>
+                    <li>Loads of content was added to this README.</li>
+                    <li>Added a tool to procedurally generate a tile map based on a noise map.</li>
+                    <li>
+                        Revamped that tool to work with tile sources with "erased" tiles.
+                        <ul>
+                            <li><i>That is, tile sources that aren't a perfect rectangle of enabled squares.</i></li>
+                        </ul>
+                    </li>
+                    <li>Created the <a href="https://kxttykxt.itch.io/fate-of-angora" target="_blank">itch.io page</a> for the project. You likely cannot see this page at this time, though.</li>
+                </ul>
+                <p>
+                    <p>For a detailed look, see the <a href="https://github.com/faas-bsu-25/kr_project3/commits/main/?since=2025-11-10&until=2025-11-16" target="_blank">commits this week</a> on GitHub.</p>
+                </p>
+                <p>
+                    I can make excuses all day for the sparse work done. 
+                    <sub>
+                        <i>
+                            I was busy, I have multiple projects going on, I fell ill,
+                            I had to do a lot of housework, I needed a break from many things.
+                        </i>
+                    </sub>
+                </p>
+                <p>
+                    But the bottom line is that I need to step up. 
+                    That is why, from this day forward, it will be my personal goal to make 
+                    <b><i>one commit every day</i>, good or bad, large or small.</b>
+                </p>
+                <p>
+                    When I find myself dreading the mountain of work that this project entails,
+                    it's important to remind myself that I actually have fun when I'm developing this.
+                    Making at least one commit every day shall remind me that I enjoy it,
+                    and hopefully I will then dread it far less.
                 </p>
             </details>
         </article>
