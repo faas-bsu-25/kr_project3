@@ -1,6 +1,12 @@
 <header>
     <h1>Project 3 - Soulbound</h1>
     <h6 role="subtitle">Kat R. | CS 315.2 - Game programming </h6>
+    <p><b><i>
+        The bulk of this readme has moved! 
+        Please follow the project URL to the <a href="https://faas-bsu-25.github.io/kr_project3/">GitHub Pages deployment</a> to view extended information. 
+        Thanks!
+    </b></i></p>
+    <hr>
     <p>This final project for CS 315 is completely unguided. Students must...</p>
     <ol>
         <li>make a real game pitch/elevator pitch</li>
@@ -51,96 +57,14 @@
         <li></li>
         <li></li>
     </ul>
-
 </nav>
 
 <hr>
 
-<main>
-    <section class="devlog">
-        <h2>Weekly Development Logs</h2>
-        <article>
-            <h3>Week of: 11/3/25</h3>
-            <details>
-                <summary><u><b>Project Initialization and <code>StatefulSprite</code></b></u></summary>
-                <br>
-                <p>During the week of 11/3, some notable things happened.</p>
-                <ol>
-                    <li>I created a project pitch for Fate of Angora.</li>
-                    <li>The project pitch for Fate of Angora was accepted.</li>
-                    <li>I created this README.</li>
-                    <li>I committed several iterations of the <code>StatefulSprite</code>.</li>
-                </ol>
-                <p>For more, see the <a href="https://github.com/faas-bsu-25/kr_project3/commits/main/?since=2025-11-03&until=2025-11-09" target="_blank">commits during this week</a>.</p>
-                <p>
-                    While this progress looks meager, it paves the road for a lot more content down the road.
-                    I plan to make the StatefulSprite have not only more states, but toggles for them all using export flags.
-                    In a case like this, I can pick and choose what states I may want a certain character to have.
-                    For example, bats can fly, but they definitely don't walk. Players can walk, but they definitely can't fly.
-                    They can both utilize the shared code of the StatefulSprite while still offering a great deal of customization.
-                </p>
-            </details>
-        </article>
-        <article>
-            <h3>Week of 11/10/25</h3>
-            <details>
-                <summary><u><b>Procedural Map Generation and itch.io Page</b></u></summary>
-                <br>
-                <p>
-                    Some crucial things happened this week. 
-                    However, I am sorry to admit that, despite this, 
-                    not much time was spent developing the game this week.
-                </p>
-                <p>First and foremost, let's see what happened in this week's commits.</p>
-                <ul>
-                    <li><code>SpriteStateMachine</code> was renamed/refactored to <code>StatefulSprite</code>.</li>
-                    <li>Loads of content was added to this README.</li>
-                    <li>Added a tool to procedurally generate a tile map based on a noise map.</li>
-                    <li>
-                        Revamped that tool to work with tile sources with "erased" tiles.
-                        <ul>
-                            <li><i>That is, tile sources that aren't a perfect rectangle of enabled squares.</i></li>
-                        </ul>
-                    </li>
-                    <li>Created the <a href="https://kxttykxt.itch.io/fate-of-angora" target="_blank">itch.io page</a> for the project. You likely cannot see this page at this time, though.</li>
-                </ul>
-                <p>
-                    <p>For a detailed look, see the <a href="https://github.com/faas-bsu-25/kr_project3/commits/main/?since=2025-11-10&until=2025-11-16" target="_blank">commits this week</a> on GitHub.</p>
-                </p>
-                <p>
-                    I can make excuses all day for the sparse work done. 
-                    <sub>
-                        <i>
-                            I was busy, I have multiple projects going on, I fell ill,
-                            I had to do a lot of housework, I needed a break from many things.
-                        </i>
-                    </sub>
-                </p>
-                <p>
-                    But the bottom line is that I need to step up. 
-                    That is why, from this day forward, it will be my personal goal to make 
-                    <b><i>one commit every day</i>, good or bad, large or small.</b>
-                </p>
-                <p>
-                    When I find myself dreading the mountain of work that this project entails,
-                    it's important to remind myself that I actually have fun when I'm developing this.
-                    Making at least one commit every day shall remind me that I enjoy it,
-                    and hopefully I will then dread it far less.
-                </p>
-            </details>
-        </article>
-        <article>
-            <h3>Week of 11/17/25</h3>
-            <details>
-                <summary><u><b>Homewardbound to Soulbound</b></u></summary>
-                <p>
-                    I have decided to scrap Fate of Angora. The development felt forced, and I was too rigid with too new an idea. It felt like a chore. My heart just wasn't in it. The important part now is that I have learned a whole lot of valuable material from my preliminary work on Fate of Angora. Noise-based procedural tilemap generation alone feels like a feat in its own right.
-                </p>
-                <p>
-                    Scrapping an entire project a couple weeks into the (pre?)-production cycle is not an action I take lightly (even though I've done it once already). I assessed the time left to complete the project and whether a switch to a more ambitious project was a good idea. Given the fact that I've been brainstorming Soulbound off and on for literal years means I have a streamlined structure for how to get there.
-                </p>
-                <p>More context can be found in this commit, "Scrap Angora and switch gears!"</p>
-            </details>
-        </article>
-    </section>
-</main>
+<i>
+    <p>Beyond this point, information including:</p>
+    <ul>
+        <li>Weekly Development Logs</li>
+    </ul>
+    <p>Has moved to the <a href="https://faas-bsu-25.github.io/kr_project3/">GitHub Pages deployment</a>.</p>
+</i>

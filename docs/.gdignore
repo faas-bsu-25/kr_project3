@@ -1,0 +1,6 @@
+*This directory is dedicated to files for the GitHub Pages deployment of this repo.*
+
+This file tells Godot to ignore the directory as though it doesn't exist. This does three things:
+1. This directory will not appear from within the Godot Editor's FileSystem Dock
+2. Files from this directory can be neither loaded (with `load()`) nor preloaded (with `preload()`).
+3. Godot will not import files from this directory automatically. Images and other assets will not be assigned corresponding `*.import` files, and the "Quick Load" dialog will not show files from this directory.
