@@ -22,9 +22,7 @@
     </ol>
     <p>Once enough content has established itself, I may migrate a lot of it to a website deployed on GitHub Pages. Right now, however, the project is bare.</p>
 </header>
-
 <hr>
-
 <nav>
     <h2>Project Documents</h2>
     <ul>
@@ -32,39 +30,13 @@
         <li><a href="https://kxttykxt.itch.io/fate-of-angora" target="_blank">itch.io Page</a></li>
         <li><a href="" target="_blank"></a></li>
     </ul>
-    <h2>Useful Links</h2>
-    <h3>Godot Docs</h3>
-    <ul>
-        <li><a href="https://docs.godotengine.org/en/stable/tutorials/ui/gui_using_theme_editor.html" target="_blank">
-        Using the theme editor
-        </a></li>
-        <li><a href="https://docs.godotengine.org/en/stable/classes/class_styleboxtexture.html#class-styleboxtexture" target="_blank">
-        StyleBoxTexture
-        </a></li>
-        <li><a href="https://docs.godotengine.org/en/stable/classes/class_ninepatchrect.html#class-ninepatchrect" target="_blank">
-        NinePatchRect
-        </a></li>
-        <li><a href="https://docs.godotengine.org/en/stable/tutorials/2d/using_tilesets.html#assigning-custom-metadata-to-the-tileset-s-tiles" target="_blank">
-        Using TileSets
-        </a></li>
-    </ul>
-    <h3>Elsewhere</h3>
-    <ul>
-        <li><a href="https://github.com/github/gitignore/tree/main/Global" target="_blank">
-        Global/Application <code>.gitignore</code> presets
-        </a></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
 </nav>
-
 <hr>
-
-<i>
+<main><i>
     <p>Beyond this point, information including:</p>
     <ul>
+        <li>Useful Links</li>
         <li>Weekly Development Logs</li>
     </ul>
     <p>Has moved to the <a href="https://faas-bsu-25.github.io/kr_project3/">GitHub Pages deployment</a>.</p>
-</i>
+</i></main>
