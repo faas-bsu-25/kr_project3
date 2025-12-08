@@ -6,10 +6,6 @@ extends AnimatedSprite2D
 const PRIEST_FRAMES = preload("res://resources/player_priest_frames.tres")
 const SWORDMAIN_FRAMES = preload("res://resources/player_swordmain_frames.tres")
 
-# I find getting parent in a tool script is a lot less dangerous than getting child.
-# Dr. Faas has heard my spiel before.
-@onready var player: Player = self.get_parent()
-
 ## This is a setter, a tool script feature, that runs a function
 ## each time the corresponding export variable changes.
 @export_enum("Priest", "Swordmain") var appearance: int:
@@ -21,6 +17,11 @@ const SWORDMAIN_FRAMES = preload("res://resources/player_swordmain_frames.tres")
 			1: ## "Swordmain"
 				self.sprite_frames = SWORDMAIN_FRAMES
 
+# I find getting parent in a tool script is a lot less dangerous than getting child.
+# Dr. Faas has heard my spiel before.
+@onready var player: Player = self.get_parent()
+
+
 func _process(_delta: float) -> void:
 	## Tool scripts also run live in the editor.
 	## This is the official way to kep them from running code in the editor.
@@ -28,7 +29,7 @@ func _process(_delta: float) -> void:
 		return
 		
 	## Test - swap appearance manually when player presses 'space'
-	if Input.is_action_just_pressed("test_trigger"):
+	if Input.is_action_just_pressed("test_swap_appearance"):
 		if self.sprite_frames == PRIEST_FRAMES:
 			self.sprite_frames = SWORDMAIN_FRAMES
 			self.appearance = 1 # "Priest"
@@ -37,10 +38,11 @@ func _process(_delta: float) -> void:
 			self.appearance = 0 # "Swordmain"
 	
 	## Flip sprite if moving left + reverse
-	if player.velocity.x < 0:
-		self.flip_h = true
-	elif player.velocity.x > 0:
-		self.flip_h = false
+	if player.state != Player.State.HURT:
+		if player.velocity.x < 0:
+			self.flip_h = true
+		elif player.velocity.x > 0:
+			self.flip_h = false
 	
 	## Change animation if state calls for it
 	match player.state:
@@ -48,3 +50,5 @@ func _process(_delta: float) -> void:
 			play("idle")
 		Player.State.WALK:
 			play("walk")
+		Player.State.HURT:
+			play("hurt")

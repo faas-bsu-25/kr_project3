@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj7nscxoenw3k"]
+[gd_scene load_steps=4 format=3 uid="uid://dj7nscxoenw3k"]
 
 [ext_resource type="PackedScene" uid="uid://7pt8a82uby1c" path="res://components/player.tscn" id="1_6txqy"]
+[ext_resource type="Texture2D" uid="uid://bfclmt0fsiw0w" path="res://assets/node_icons/icon_character.png" id="2_eeoh7"]
+[ext_resource type="Script" uid="uid://bokwbnxs0jagb" path="res://scripts/test_hurt_knockback.gd" id="3_kl7gn"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_6txqy")]
+position = Vector2(960, 540)
+
+[node name="TestHurtKnockback" type="Sprite2D" parent="." node_paths=PackedStringArray("player_to_attack")]
+position = Vector2(674, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("2_eeoh7")
+script = ExtResource("3_kl7gn")
+player_to_attack = NodePath("../Player")
