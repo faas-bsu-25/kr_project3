@@ -29,4 +29,6 @@ one_shot = true
 script = ExtResource("4_5odhx")
 
 [connection signal="attack_player" from="." to="." method="_on_attack_player"]
+[connection signal="attack_player" from="." to="Sprite" method="_on_attack_player"]
+[connection signal="attack_player" from="." to="HitstunTimer" method="_on_attack_player"]
 [connection signal="timeout" from="HitstunTimer" to="HitstunTimer" method="_on_timeout"]
