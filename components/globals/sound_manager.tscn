@@ -1,16 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtvc206n5hojt"]
+[gd_scene load_steps=6 format=3 uid="uid://dtvc206n5hojt"]
 
 [ext_resource type="Script" uid="uid://duj2mpc66rj88" path="res://scripts/globals/sound_manager.gd" id="1_bdo2v"]
 [ext_resource type="AudioStream" uid="uid://bh341c3u7v4l5" path="res://assets/audio/missile_shoot.wav" id="2_15tvf"]
-[ext_resource type="AudioStream" uid="uid://y67a6egjuxov" path="res://assets/audio/missile_collide.wav" id="3_xajaa"]
+[ext_resource type="AudioStream" uid="uid://y67a6egjuxov" path="res://assets/audio/hit_collide.wav" id="3_xajaa"]
+[ext_resource type="AudioStream" uid="uid://b08anutfa8r5a" path="res://assets/audio/player_hurt.wav" id="4_15tvf"]
+[ext_resource type="AudioStream" uid="uid://boi4vdjdameku" path="res://assets/audio/sword_swing.wav" id="5_xajaa"]
 
 [node name="SoundManager" type="Node"]
 script = ExtResource("1_bdo2v")
 
-[node name="Missile" type="Node" parent="."]
+[node name="HitCollide" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xajaa")
+volume_db = 2.0
 
-[node name="Shoot" type="AudioStreamPlayer" parent="Missile"]
+[node name="MissileShoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_15tvf")
 
-[node name="Collide" type="AudioStreamPlayer" parent="Missile"]
-stream = ExtResource("3_xajaa")
+[node name="PlayerHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_15tvf")
+volume_db = -3.0
+
+[node name="SwordSwing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xajaa")
+volume_db = -3.0

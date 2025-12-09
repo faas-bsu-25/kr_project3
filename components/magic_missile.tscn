@@ -9,15 +9,16 @@ collision_layer = 4
 collision_mask = 2
 velocity = Vector2(0.5, 0)
 script = ExtResource("1_xofb6")
-move_speed = 200
 
 [node name="Sprite" type="Polygon2D" parent="."]
+rotation = 3.4078107
 color = Color(0.8057397, 0.0002570182, 0.7389163, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-4.7683716e-07, 1.4901161e-08)
+rotation = 3.4078107
 shape = SubResource("RectangleShape2D_xofb6")
 metadata/_edit_lock_ = true
 

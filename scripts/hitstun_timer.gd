@@ -21,5 +21,5 @@ func _process(_delta: float) -> void:
 		player.state = Player.State.IDLE
 
 
-func _on_attack_player(_attacker: Node2D) -> void:
+func _on_player_hurt() -> void:
 	self.start(initial_wait_time)

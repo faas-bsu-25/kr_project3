@@ -14,13 +14,10 @@ extends Area2D
 ## The second hurtbox shape, which activates on frames 6 and 7.
 @onready var box_two: CollisionPolygon2D = $SecondSwingShape
 
-## The sword swinging sound
-@onready var swing_sound: AudioStreamPlayer = $SwingSound
-
 
 ## Using the `attack_2` animation...
-## 1st swing: frame 3 only
-## 2nd swing: frames 6 and 7
+## 1st swing: frame 2 only
+## 2nd swing: frames 5 and 6
 func _on_sprite_frame_changed() -> void:
 	# If the player hasn't loaded, 
 	# or if not using a sword, 
@@ -41,21 +38,18 @@ func _on_sprite_frame_changed() -> void:
 	
 	# Enable/Disable hurtboxes when needed
 	match (sprite.frame):
-		3:
+		2:
 			box_one.disabled = false
-			swing_sound.play()
-		4:
+			SoundManager.play_sound(SoundManager.Sound.SWORD_SWING)
+		3:
 			box_one.disabled = true
-		6:
+		5:
 			box_two.disabled = false
-			swing_sound.play()
-		8:
+			SoundManager.play_sound(SoundManager.Sound.SWORD_SWING)
+		7:
 			box_two.disabled = true
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("I hit a %s!" % body.name)
-	SoundManager.play_sound(SoundManager.Sound.MISSILE_COLLIDE)
-	
-	if body is Attackable:
-		player.attack(body as Attackable)
+	if body is Mobile:
+		player.attack(body as Mobile)

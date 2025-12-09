@@ -20,7 +20,9 @@ extends Node
 ## Instead, please see SoundManager#_get_sound() for its match pattern.
 enum Sound {
 	MISSILE_SHOOT,
-	MISSILE_COLLIDE,
+	HIT_COLLIDE,
+	PLAYER_HURT,
+	SWORD_SWING,
 }
 
 
@@ -31,8 +33,10 @@ enum Sound {
 ## Godot won't validate the function unless an ultimate return value is provided beyond the match pattern.
 func _get_sound(sound: Sound) -> AudioStreamPlayer:
 	match (sound):
-		Sound.MISSILE_SHOOT: return $Missile/Shoot as AudioStreamPlayer
-		Sound.MISSILE_COLLIDE: return $Missile/Collide as AudioStreamPlayer
+		Sound.MISSILE_SHOOT: return $MissileShoot as AudioStreamPlayer
+		Sound.HIT_COLLIDE: return $HitCollide as AudioStreamPlayer
+		Sound.PLAYER_HURT: return $PlayerHurt as AudioStreamPlayer
+		Sound.SWORD_SWING: return $SwordSwing as AudioStreamPlayer
 	
 	return null
 

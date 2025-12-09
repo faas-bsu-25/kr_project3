@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://y67a6egjuxov"
-path="res://.godot/imported/missile_collide.wav-a8e6500d95300295143a78f1ba3099f3.sample"
+path="res://.godot/imported/hit_collide.wav-d84546bdb2ec03dbafdf15ec57cca05c.sample"
 
 [deps]
 
-source_file="res://assets/audio/missile_collide.wav"
-dest_files=["res://.godot/imported/missile_collide.wav-a8e6500d95300295143a78f1ba3099f3.sample"]
+source_file="res://assets/audio/hit_collide.wav"
+dest_files=["res://.godot/imported/hit_collide.wav-d84546bdb2ec03dbafdf15ec57cca05c.sample"]
 
 [params]
 

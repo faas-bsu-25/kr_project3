@@ -1,12 +1,10 @@
 @icon("res://assets/node_icons/icon_character.png")
 class_name Player
-extends Attackable
+extends Mobile
 
 
-## Other entities call this signal to hurt the player.
-## Given this, it makes sense to declare the signal here.
-@warning_ignore("unused_signal")
-signal attack_player(attacker: Node2D);
+## When the player is hurt, it announces this to its children and others via this signal.
+signal on_hurt
 
 ## State machine, mainly used with children in composition pattern.
 ##
@@ -73,8 +71,14 @@ func _determine_state() -> void:
 		self.state = State.IDLE
 
 
-func _on_attacked(attacker: Attackable) -> void:
+func attack(victim: Mobile) -> void:
+	victim.on_attacked(self)
+
+
+func on_attacked(attacker: Mobile) -> void:
 	self.state = State.HURT
+	SoundManager.play_sound(SoundManager.Sound.PLAYER_HURT)
+	on_hurt.emit()
 	
 	print(knockback_impulse)
 	
@@ -83,4 +87,7 @@ func _on_attacked(attacker: Attackable) -> void:
 	print("Knockback force: %f\nKnockback direction: %v	\nKnockback vector: %v\n" 
 			% [knockback_impulse, knockback_dir, knockback_vec])
 	
-	self.velocity = knockback_vec
+	# Maximum velocity is the knockback vector, but minimum is in between.
+	# An example would be a player moving right that gets knocked left.
+	self.velocity += knockback_vec
+	#self.velocity = self.velocity.clamp(-knockback_vec, knockback_vec)

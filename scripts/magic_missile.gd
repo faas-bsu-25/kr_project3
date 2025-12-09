@@ -1,7 +1,7 @@
 @icon("res://assets/node_icons/icon_projectile.png")
 @tool
 class_name MagicMissile
-extends Attackable
+extends Mobile.Attacker
 
 
 @export var move_speed := 200.0
@@ -43,10 +43,9 @@ func _process(delta: float) -> void:
 	var collision := move_and_collide(self.velocity)
 	
 	if collision:
-		if collision.get_collider() is Attackable:
-			attack(collision.get_collider() as Attackable)
+		if collision.get_collider() is Mobile:
+			attack(collision.get_collider() as Mobile)
 		
-		SoundManager.play_sound(SoundManager.Sound.MISSILE_COLLIDE)
 		queue_free()
 
 
@@ -54,5 +53,5 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 
-func _on_attacked(_attacker: Attackable) -> void:
-	pass
+func attack(victim: Mobile) -> void:
+	victim.on_attacked(self)

@@ -64,5 +64,5 @@ func _process(_delta: float) -> void:
 			play("attack_2")
 
 
-func _on_attack_player(_attacker: Node2D) -> void:
+func _on_player_hurt() -> void:
 	play("hurt")

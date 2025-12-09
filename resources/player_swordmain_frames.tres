@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=54 format=3 uid="uid://bn1ykd4eybp3p"]
+[gd_resource type="SpriteFrames" load_steps=53 format=3 uid="uid://bn1ykd4eybp3p"]
 
 [ext_resource type="Texture2D" uid="uid://btbfgucknucpt" path="res://assets/sprites/Swordmain.png" id="1_nd1rm"]
 
@@ -29,10 +29,6 @@ region = Rect2(500, 200, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l22p1"]
 atlas = ExtResource("1_nd1rm")
 region = Rect2(600, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5c3gq"]
-atlas = ExtResource("1_nd1rm")
-region = Rect2(0, 300, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl81w"]
 atlas = ExtResource("1_nd1rm")
@@ -239,9 +235,6 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5c3gq")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gl81w")
 }, {
