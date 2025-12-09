@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://boi4vdjdameku" path="res://assets/audio/sword_swing.wav" id="6_kuobi"]
 [ext_resource type="Script" uid="uid://bpviatir6otn3" path="res://scripts/soulbound_tome.gd" id="7_0lm1f"]
 [ext_resource type="Script" uid="uid://dr40wfgon58xk" path="res://scripts/tome_sprite.gd" id="8_couud"]
-[ext_resource type="Texture2D" uid="uid://c4k5ooiyvprpm" path="res://assets/books.png" id="8_pir3r"]
+[ext_resource type="Texture2D" uid="uid://c4k5ooiyvprpm" path="res://assets/sprites/books.png" id="8_pir3r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpcbn"]
 radius = 18.0

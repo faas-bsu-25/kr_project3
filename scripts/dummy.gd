@@ -1,4 +1,5 @@
-extends Sprite2D
+@icon("res://assets/node_icons/icon_target.png")
+extends StaticBody2D
 
 
 @export var player_to_attack: Player

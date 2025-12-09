@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://c62y5s7k4a7hw"]
+
+[ext_resource type="Texture2D" uid="uid://cl2s1dr1f7w7r" path="res://assets/sprites/Orc-Idle.png" id="1_3500q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l74tn"]
+atlas = ExtResource("1_3500q")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plpsw"]
+atlas = ExtResource("1_3500q")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwbwo"]
+atlas = ExtResource("1_3500q")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srq0b"]
+atlas = ExtResource("1_3500q")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmcsa"]
+atlas = ExtResource("1_3500q")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtlks"]
+atlas = ExtResource("1_3500q")
+region = Rect2(500, 0, 100, 100)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l74tn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plpsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwbwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srq0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmcsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtlks")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]

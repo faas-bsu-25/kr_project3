@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btbfgucknucpt"
-path="res://.godot/imported/Swordmain.png-1b4218406bf426998530035dee63a84a.ctex"
+uid="uid://b18lxvx08aoh8"
+path="res://.godot/imported/icon_projectile.png-34695c1e9cc23e468930762ecc4e7107.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Swordmain.png"
-dest_files=["res://.godot/imported/Swordmain.png-1b4218406bf426998530035dee63a84a.ctex"]
+source_file="res://assets/node_icons/icon_projectile.png"
+dest_files=["res://.godot/imported/icon_projectile.png-34695c1e9cc23e468930762ecc4e7107.ctex"]
 
 [params]
 

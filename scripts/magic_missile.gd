@@ -1,3 +1,4 @@
+@icon("res://assets/node_icons/icon_projectile.png")
 @tool
 class_name MagicMissile
 extends CharacterBody2D
@@ -16,8 +17,6 @@ extends CharacterBody2D
 
 var rotating := true
 
-@onready var shoot_sound: AudioStreamPlayer = $ShootSound
-
 @onready var sprite: Polygon2D = $Sprite
 @onready var shape: CollisionShape2D = $Shape
 
@@ -26,8 +25,8 @@ func _ready() -> void:
 	sprite.rotation = 0;
 	shape.rotation = 0;
 	
-	shoot_sound.pitch_scale = randf_range(0.5, 1.5)
-	shoot_sound.play()
+	var pitch_scale := randf_range(0.5, 1.5)
+	SoundManager.play_sound_pitched(SoundManager.Sound.MISSILE_SHOOT, pitch_scale)
 
 
 func _process(delta: float) -> void:
@@ -43,6 +42,8 @@ func _process(delta: float) -> void:
 	var collision := move_and_collide(self.velocity)
 	
 	if collision:
+		self.visible = false
+		SoundManager.play_sound(SoundManager.Sound.MISSILE_COLLIDE)
 		queue_free()
 
 
