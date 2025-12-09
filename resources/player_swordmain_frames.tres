@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=59 format=3 uid="uid://bn1ykd4eybp3p"]
+[gd_resource type="SpriteFrames" load_steps=54 format=3 uid="uid://bn1ykd4eybp3p"]
 
 [ext_resource type="Texture2D" uid="uid://btbfgucknucpt" path="res://assets/Swordmain.png" id="1_nd1rm"]
 
@@ -69,26 +69,6 @@ region = Rect2(800, 300, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xshae"]
 atlas = ExtResource("1_nd1rm")
 region = Rect2(900, 300, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uu0dx"]
-atlas = ExtResource("1_nd1rm")
-region = Rect2(1000, 300, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b0u31"]
-atlas = ExtResource("1_nd1rm")
-region = Rect2(1100, 300, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6kpc5"]
-atlas = ExtResource("1_nd1rm")
-region = Rect2(1200, 300, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kykn3"]
-atlas = ExtResource("1_nd1rm")
-region = Rect2(1300, 300, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bjtg1"]
-atlas = ExtResource("1_nd1rm")
-region = Rect2(1400, 300, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6cp1"]
 atlas = ExtResource("1_nd1rm")
@@ -288,21 +268,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xshae")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uu0dx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b0u31")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6kpc5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kykn3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bjtg1")
 }],
 "loop": true,
 "name": &"attack_2",

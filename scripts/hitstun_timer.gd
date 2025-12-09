@@ -7,11 +7,11 @@ extends Timer
 
 
 func _process(_delta: float) -> void:
-	## only allow player to become unstunned if all are true:
-	## 1. the player is hurt
-	## 2. timer has ended
-	## 3. player velocity is below the threshold
-	##    (see Player.unstun_threshold)
+	# only allow player to become unstunned if all are true:
+	# 1. the player is hurt
+	# 2. timer has ended
+	# 3. player velocity is below the threshold
+	#    (see Player.unstun_threshold)
 	if (
 		player.state == Player.State.HURT 
 		and self.is_stopped() 

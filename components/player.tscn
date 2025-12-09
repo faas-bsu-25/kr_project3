@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://7pt8a82uby1c"]
+[gd_scene load_steps=7 format=3 uid="uid://7pt8a82uby1c"]
 
 [ext_resource type="Script" uid="uid://5yb6hmtfxlh0" path="res://scripts/player.gd" id="1_uapwn"]
 [ext_resource type="SpriteFrames" uid="uid://bn1ykd4eybp3p" path="res://resources/player_swordmain_frames.tres" id="2_5odhx"]
 [ext_resource type="Script" uid="uid://bbus10ukmfha7" path="res://scripts/player_sprite.gd" id="3_1kub6"]
 [ext_resource type="Script" uid="uid://rrycdgrdoide" path="res://scripts/hitstun_timer.gd" id="4_5odhx"]
+[ext_resource type="Script" uid="uid://dpjhsnckh0m0j" path="res://scripts/sword_hurtbox.gd" id="5_1kub6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpcbn"]
 radius = 18.0
@@ -16,7 +17,7 @@ script = ExtResource("1_uapwn")
 position = Vector2(-1, 6)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_5odhx")
-animation = &"hurt"
+animation = &"attack_2"
 autoplay = "idle"
 script = ExtResource("3_1kub6")
 
@@ -28,7 +29,20 @@ wait_time = 0.5
 one_shot = true
 script = ExtResource("4_5odhx")
 
+[node name="SwordHurtbox" type="Area2D" parent="."]
+script = ExtResource("5_1kub6")
+
+[node name="FirstSwingShape" type="CollisionPolygon2D" parent="SwordHurtbox"]
+polygon = PackedVector2Array(20, -13, 23, -9, 41, -9, 52, 0, 52, 6, 23, 36, 23, 39, 26, 39, 47, 27, 77, -3, 80, -15, 71, -24, 59, -30, 47, -30, 23, -18)
+disabled = true
+
+[node name="SecondSwingShape" type="CollisionPolygon2D" parent="SwordHurtbox"]
+polygon = PackedVector2Array(41, -12, 56, -4, 17, 18, 17, 23, 35, 35, 47, 36, 89, 0, 89, -12)
+disabled = true
+
 [connection signal="attack_player" from="." to="." method="_on_attack_player"]
 [connection signal="attack_player" from="." to="Sprite" method="_on_attack_player"]
 [connection signal="attack_player" from="." to="HitstunTimer" method="_on_attack_player"]
+[connection signal="frame_changed" from="Sprite" to="SwordHurtbox" method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="HitstunTimer" to="HitstunTimer" method="_on_timeout"]
+[connection signal="body_entered" from="SwordHurtbox" to="SwordHurtbox" method="_on_body_entered"]

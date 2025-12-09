@@ -5,6 +5,6 @@ extends Sprite2D
 
 
 func _process(_delta: float) -> void:
-	## Test - hurt player on command ('H') to test Player.State.HURT
+	# Test - hurt player on command ('H') to test Player.State.HURT
 	if Input.is_action_just_pressed("test_hurt_player"):
 		player_to_attack.attack_player.emit(self)

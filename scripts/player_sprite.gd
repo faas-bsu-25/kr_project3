@@ -1,5 +1,6 @@
 @icon("res://assets/node_icons/icon_face.png")
 @tool
+class_name PlayerSprite
 extends AnimatedSprite2D
 
 ## "Appearances" (sprite frames) to swap between depending on equipment
@@ -17,18 +18,20 @@ const SWORDMAIN_FRAMES = preload("res://resources/player_swordmain_frames.tres")
 			1: ## "Swordmain"
 				self.sprite_frames = SWORDMAIN_FRAMES
 
-# I find getting parent in a tool script is a lot less dangerous than getting child.
-# Dr. Faas has heard my spiel before.
+## The parent player of this sprite
 @onready var player: Player = self.get_parent()
+## The sword hurtbox, which is dependent upon animation frames
+## Given this dependency, the sprite will signal to the sword on the desired frames
+@onready var sword_hurtbox: SwordHurtbox = player.get_node("SwordHurtbox");
 
 
 func _process(_delta: float) -> void:
-	## Tool scripts also run live in the editor.
-	## This is the official way to kep them from running code in the editor.
+	# Tool scripts also run live in the editor.
+	# This is the official way to kep them from running code in the editor.
 	if Engine.is_editor_hint():
 		return
 		
-	## Test - swap appearance manually when player presses 'R'
+	# Test - swap appearance manually when player presses 'R'
 	if Input.is_action_just_pressed("test_swap_appearance"):
 		if self.sprite_frames == PRIEST_FRAMES:
 			self.sprite_frames = SWORDMAIN_FRAMES
@@ -37,23 +40,28 @@ func _process(_delta: float) -> void:
 			self.sprite_frames = PRIEST_FRAMES
 			self.appearance = 0 # "Swordmain"
 	
-	## Flip sprite if moving left + reverse
+	# Flip sprite if moving left + reverse
+	# ALSO FLIP (scale) HURTBOX
 	if player.state != Player.State.HURT:
 		if player.velocity.x < 0:
 			self.flip_h = true
+			sword_hurtbox.scale.x = -1
 		elif player.velocity.x > 0:
 			self.flip_h = false
+			sword_hurtbox.scale.x = 1
 	
-	## Change animation if state calls for it
+	# Change animation if state calls for it
 	match player.state:
 		Player.State.IDLE:
 			play("idle")
 		Player.State.WALK:
 			play("walk")
-		## I only want it to play once,
-		## so see _on_attack_player()
+		# I only want it to play once,
+		# so see _on_attack_player()
 		#Player.State.HURT:
 			#play("hurt")
+		Player.State.ATTACK:
+			play("attack_2")
 
 
 func _on_attack_player(_attacker: Node2D) -> void:

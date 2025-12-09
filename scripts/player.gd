@@ -13,17 +13,18 @@ signal attack_player(attacker: Node2D);
 ## It is generally safer for a child node to reference a parent node,
 ##  especially @onready, than for a parent to reference a child.
 ## If a child is loaded, its parent is loaded. 
-## The same cannot be said the other way around.
+## The same cannot be said for the other way around.
 enum State { 
 	IDLE,	## player is stationary [default state]
 	WALK,	## player is moving
 	HURT,   ## player is hurt, and can neither idle nor walk
+	ATTACK, ## player is actively using sword or Tome
 }
 
 ## Base movement speed
 @export var walkspeed := 5000.0
 ## Initial knockback speed
-@export var knockback_impulse := 200
+@export var knockback_impulse := 200.0
 ## While hitstunned/knockbacked, each tick multiplies the player's velocity by this percentage.
 ## Ex. if a player's knockback speed is 100m/s, 95% knockback_friction reduces the speed to 95m/s.
 @export_range(0.0, 100.0, 0.01, "suffix:%") var knockback_friction := 95.0 # %
@@ -36,8 +37,8 @@ var state := State.IDLE;
 ## Since these functions are small lambdas that effectively represent a value,
 ## I shall treat them as variables.
 ## (Godot lacks a way to export real percentages.)
-func actual_friction() -> float: return knockback_friction / 100.0
-## See docs for actual_friction()
+func actual_kb_friction() -> float: return knockback_friction / 100.0
+## See docs for actual_kb_friction()
 func actual_unstun_threshold() -> float: return unstun_threshold / 100.0
 
 
@@ -46,9 +47,11 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	## Move... unless HURT/hit-stun is active
+	# Move... unless HURT or ATTACKing
 	if self.state == Player.State.HURT:
-		self.velocity *= actual_friction()
+		self.velocity *= actual_kb_friction()
+	elif self.state == Player.State.ATTACK:
+		self.velocity = Vector2.ZERO
 	else:
 		var move_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		self.velocity = move_dir * delta * walkspeed;
@@ -57,12 +60,14 @@ func _physics_process(delta: float) -> void:
 
 
 func _determine_state() -> void:
-	## HURT state is triggered, unlike IDLE and WALK.
-	## When HURT, you cannot move
+	# HURT state is triggered, unlike IDLE and WALK.
+	# When HURT, you cannot move
 	if state == State.HURT:
 		return
 	
-	if self.state != State.WALK and self.velocity != Vector2.ZERO:
+	if Input.is_action_pressed("attack"):
+		state = State.ATTACK
+	elif self.state != State.WALK and self.velocity != Vector2.ZERO:
 		self.state = State.WALK
 	elif (self.state != State.IDLE) and (self.velocity == Vector2.ZERO):
 		self.state = State.IDLE
