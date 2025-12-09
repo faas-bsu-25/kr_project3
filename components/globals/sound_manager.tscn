@@ -7,8 +7,10 @@
 [node name="SoundManager" type="Node"]
 script = ExtResource("1_bdo2v")
 
-[node name="MissileShootSound" type="AudioStreamPlayer" parent="."]
+[node name="Missile" type="Node" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Missile"]
 stream = ExtResource("2_15tvf")
 
-[node name="MissileCollideSound" type="AudioStreamPlayer" parent="."]
+[node name="Collide" type="AudioStreamPlayer" parent="Missile"]
 stream = ExtResource("3_xajaa")

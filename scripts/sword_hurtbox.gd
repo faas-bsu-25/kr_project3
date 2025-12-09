@@ -56,3 +56,6 @@ func _on_sprite_frame_changed() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	print("I hit a %s!" % body.name)
 	SoundManager.play_sound(SoundManager.Sound.MISSILE_COLLIDE)
+	
+	if body is Attackable:
+		player.attack(body as Attackable)

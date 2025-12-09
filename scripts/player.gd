@@ -1,6 +1,6 @@
 @icon("res://assets/node_icons/icon_character.png")
 class_name Player
-extends CharacterBody2D
+extends Attackable
 
 
 ## Other entities call this signal to hurt the player.
@@ -73,7 +73,7 @@ func _determine_state() -> void:
 		self.state = State.IDLE
 
 
-func _on_attack_player(attacker: Node2D) -> void:
+func _on_attacked(attacker: Attackable) -> void:
 	self.state = State.HURT
 	
 	print(knockback_impulse)

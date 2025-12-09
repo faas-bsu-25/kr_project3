@@ -1,7 +1,7 @@
 @icon("res://assets/node_icons/icon_projectile.png")
 @tool
 class_name MagicMissile
-extends CharacterBody2D
+extends Attackable
 
 
 @export var move_speed := 200.0
@@ -38,14 +38,21 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	# move "forward"
 	velocity = transform.x * move_speed * delta
 	var collision := move_and_collide(self.velocity)
 	
 	if collision:
-		self.visible = false
+		if collision.get_collider() is Attackable:
+			attack(collision.get_collider() as Attackable)
+		
 		SoundManager.play_sound(SoundManager.Sound.MISSILE_COLLIDE)
 		queue_free()
 
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_attacked(_attacker: Attackable) -> void:
+	pass
