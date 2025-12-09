@@ -1,14 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://7pt8a82uby1c"]
+[gd_scene load_steps=12 format=3 uid="uid://7pt8a82uby1c"]
 
 [ext_resource type="Script" uid="uid://5yb6hmtfxlh0" path="res://scripts/player.gd" id="1_uapwn"]
-[ext_resource type="SpriteFrames" uid="uid://bn1ykd4eybp3p" path="res://resources/player_swordmain_frames.tres" id="2_5odhx"]
+[ext_resource type="SpriteFrames" uid="uid://wkb8tvgcte2p" path="res://resources/player_priest_frames.tres" id="2_pir3r"]
 [ext_resource type="Script" uid="uid://bbus10ukmfha7" path="res://scripts/player_sprite.gd" id="3_1kub6"]
 [ext_resource type="Script" uid="uid://rrycdgrdoide" path="res://scripts/hitstun_timer.gd" id="4_5odhx"]
 [ext_resource type="Script" uid="uid://dpjhsnckh0m0j" path="res://scripts/sword_hurtbox.gd" id="5_1kub6"]
+[ext_resource type="AudioStream" uid="uid://boi4vdjdameku" path="res://assets/audio/sword_swing.wav" id="6_kuobi"]
+[ext_resource type="Script" uid="uid://bpviatir6otn3" path="res://scripts/soulbound_tome.gd" id="7_0lm1f"]
+[ext_resource type="Script" uid="uid://dr40wfgon58xk" path="res://scripts/tome_sprite.gd" id="8_couud"]
+[ext_resource type="Texture2D" uid="uid://c4k5ooiyvprpm" path="res://assets/books.png" id="8_pir3r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpcbn"]
 radius = 18.0
 height = 60.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm1xv"]
+atlas = ExtResource("8_pir3r")
+region = Rect2(192, 80, 16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_uapwn")
@@ -16,7 +24,7 @@ script = ExtResource("1_uapwn")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 6)
 scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_5odhx")
+sprite_frames = ExtResource("2_pir3r")
 animation = &"attack_2"
 autoplay = "idle"
 script = ExtResource("3_1kub6")
@@ -40,9 +48,24 @@ disabled = true
 polygon = PackedVector2Array(41, -12, 56, -4, 17, 18, 17, 23, 35, 35, 47, 36, 89, 0, 89, -12)
 disabled = true
 
+[node name="SwingSound" type="AudioStreamPlayer" parent="SwordHurtbox"]
+stream = ExtResource("6_kuobi")
+volume_db = -3.0
+pitch_scale = 1.45
+
+[node name="SoulboundTome" type="Node2D" parent="."]
+script = ExtResource("7_0lm1f")
+
+[node name="Sprite" type="Sprite2D" parent="SoulboundTome"]
+position = Vector2(0, -55)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_mm1xv")
+script = ExtResource("8_couud")
+
 [connection signal="attack_player" from="." to="." method="_on_attack_player"]
 [connection signal="attack_player" from="." to="Sprite" method="_on_attack_player"]
 [connection signal="attack_player" from="." to="HitstunTimer" method="_on_attack_player"]
 [connection signal="frame_changed" from="Sprite" to="SwordHurtbox" method="_on_sprite_frame_changed"]
+[connection signal="sprite_frames_changed" from="Sprite" to="SoulboundTome/Sprite" method="_on_player_sprite_frames_changed"]
 [connection signal="timeout" from="HitstunTimer" to="HitstunTimer" method="_on_timeout"]
 [connection signal="body_entered" from="SwordHurtbox" to="SwordHurtbox" method="_on_body_entered"]

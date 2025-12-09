@@ -1,3 +1,4 @@
+@icon("res://assets/node_icons/icon_sword.png")
 class_name SwordHurtbox
 extends Area2D
 
@@ -12,6 +13,10 @@ extends Area2D
 @onready var box_one: CollisionPolygon2D = $FirstSwingShape
 ## The second hurtbox shape, which activates on frames 6 and 7.
 @onready var box_two: CollisionPolygon2D = $SecondSwingShape
+
+## The sword swinging sound
+@onready var swing_sound: AudioStreamPlayer = $SwingSound
+
 
 ## Using the `attack_2` animation...
 ## 1st swing: frame 3 only
@@ -36,10 +41,16 @@ func _on_sprite_frame_changed() -> void:
 	
 	# Enable/Disable hurtboxes when needed
 	match (sprite.frame):
-		3:	box_one.disabled = false
-		4:	box_one.disabled = true
-		6:	box_two.disabled = false
-		8:	box_two.disabled = true
+		3:
+			box_one.disabled = false
+			swing_sound.play()
+		4:
+			box_one.disabled = true
+		6:
+			box_two.disabled = false
+			swing_sound.play()
+		8:
+			box_two.disabled = true
 
 
 func _on_body_entered(body: Node2D) -> void:
