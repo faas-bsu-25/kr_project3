@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtvc206n5hojt"]
+[gd_scene load_steps=7 format=3 uid="uid://dtvc206n5hojt"]
 
 [ext_resource type="Script" uid="uid://duj2mpc66rj88" path="res://scripts/globals/sound_manager.gd" id="1_bdo2v"]
 [ext_resource type="AudioStream" uid="uid://bh341c3u7v4l5" path="res://assets/audio/missile_shoot.wav" id="2_15tvf"]
 [ext_resource type="AudioStream" uid="uid://y67a6egjuxov" path="res://assets/audio/hit_collide.wav" id="3_xajaa"]
 [ext_resource type="AudioStream" uid="uid://b08anutfa8r5a" path="res://assets/audio/player_hurt.wav" id="4_15tvf"]
 [ext_resource type="AudioStream" uid="uid://boi4vdjdameku" path="res://assets/audio/sword_swing.wav" id="5_xajaa"]
+[ext_resource type="AudioStream" uid="uid://rda7lcslx20o" path="res://assets/audio/blast_explosion.wav" id="6_jwgxw"]
 
 [node name="SoundManager" type="Node"]
 script = ExtResource("1_bdo2v")
@@ -22,4 +23,8 @@ volume_db = -3.0
 
 [node name="SwordSwing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_xajaa")
+volume_db = -3.0
+
+[node name="BlastExplosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jwgxw")
 volume_db = -3.0

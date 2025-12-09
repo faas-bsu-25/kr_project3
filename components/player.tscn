@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7pt8a82uby1c"]
+[gd_scene load_steps=10 format=3 uid="uid://7pt8a82uby1c"]
 
 [ext_resource type="Script" uid="uid://5yb6hmtfxlh0" path="res://scripts/player.gd" id="1_uapwn"]
 [ext_resource type="SpriteFrames" uid="uid://bn1ykd4eybp3p" path="res://resources/player_swordmain_frames.tres" id="2_pir3r"]
@@ -6,23 +6,15 @@
 [ext_resource type="Script" uid="uid://rrycdgrdoide" path="res://scripts/hitstun_timer.gd" id="4_5odhx"]
 [ext_resource type="Script" uid="uid://dpjhsnckh0m0j" path="res://scripts/sword_hurtbox.gd" id="5_1kub6"]
 [ext_resource type="Script" uid="uid://bpviatir6otn3" path="res://scripts/soulbound_tome.gd" id="7_0lm1f"]
+[ext_resource type="Texture2D" uid="uid://b18lxvx08aoh8" path="res://assets/node_icons/icon_projectile.png" id="7_couud"]
 [ext_resource type="Script" uid="uid://dr40wfgon58xk" path="res://scripts/tome_sprite.gd" id="8_couud"]
-[ext_resource type="Texture2D" uid="uid://c4k5ooiyvprpm" path="res://assets/sprites/books.png" id="8_pir3r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpcbn"]
 radius = 18.0
 height = 60.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mm1xv"]
-atlas = ExtResource("8_pir3r")
-region = Rect2(192, 80, 16, 16)
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_uapwn")
-walkspeed = null
-knockback_impulse = null
-knockback_friction = null
-unstun_threshold = null
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 6)
@@ -58,7 +50,7 @@ script = ExtResource("7_0lm1f")
 [node name="Sprite" type="Sprite2D" parent="SoulboundTome"]
 position = Vector2(0, -55)
 scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_mm1xv")
+texture = ExtResource("7_couud")
 script = ExtResource("8_couud")
 
 [connection signal="on_hurt" from="." to="Sprite" method="_on_player_hurt"]

@@ -23,6 +23,7 @@ enum Sound {
 	HIT_COLLIDE,
 	PLAYER_HURT,
 	SWORD_SWING,
+	BLAST_EXPLOSION,
 }
 
 
@@ -37,6 +38,7 @@ func _get_sound(sound: Sound) -> AudioStreamPlayer:
 		Sound.HIT_COLLIDE: return $HitCollide as AudioStreamPlayer
 		Sound.PLAYER_HURT: return $PlayerHurt as AudioStreamPlayer
 		Sound.SWORD_SWING: return $SwordSwing as AudioStreamPlayer
+		Sound.BLAST_EXPLOSION: return $BlastExplosion as AudioStreamPlayer
 	
 	return null
 

@@ -18,5 +18,5 @@ func attack(victim: Mobile) -> void:
 	victim.on_attacked(self)
 
 func on_attacked(attacker: Mobile) -> void:
-	print("Owww! That hurt, %s!" % attacker.name)
+	print("Owww! That hurt, %s!" % (attacker.name if attacker else &"dude"))
 	SoundManager.play_sound(SoundManager.Sound.HIT_COLLIDE)

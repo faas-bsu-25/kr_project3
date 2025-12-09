@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmyrdpmkd37o0"]
+
+[ext_resource type="Script" uid="uid://dp2fpybnc8e5b" path="res://scripts/magic_blast.gd" id="1_6rhi3"]
+
+[sub_resource type="Gradient" id="Gradient_1ipwj"]
+colors = PackedColorArray(0.84872097, 7.82606e-05, 0.6692058, 1, 0.5561766, 0.00047716827, 0.6161361, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cbm45"]
+gradient = SubResource("Gradient_1ipwj")
+
+[sub_resource type="Curve" id="Curve_8q0ih"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.71378094, 0.8110466), 0.0, 0.0, 0, 0, Vector2(0.99646646, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dele2"]
+curve = SubResource("Curve_8q0ih")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1jm3h"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 40.5
+angular_velocity_min = -560.75
+angular_velocity_max = 533.82996
+linear_accel_min = -35.510002
+linear_accel_max = 18.069998
+scale_min = 3.0
+scale_max = 15.0
+scale_curve = SubResource("CurveTexture_dele2")
+color_initial_ramp = SubResource("GradientTexture1D_cbm45")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x46jr"]
+radius = 14.0
+
+[node name="MagicBlast" type="GPUParticles2D"]
+scale = Vector2(3, 3)
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1jm3h")
+script = ExtResource("1_6rhi3")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_x46jr")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

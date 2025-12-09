@@ -23,7 +23,7 @@ extends CharacterBody2D
 @abstract func on_attacked(attacker: Mobile) -> void
 
 
-## A subclass of [Mobile] which only attacks with no victim implementation
+## A convenience subclass of [Mobile] which only attacks with no victim implementation
 @abstract class Attacker extends Mobile:
 	
 	@abstract func attack(victim: Mobile) -> void
@@ -32,7 +32,7 @@ extends CharacterBody2D
 		pass
 
 
-## A subclass of [Mobile] which only plays the victim with no attack implementation
+## A convenience subclass of [Mobile] which only plays the victim with no attack implementation
 @abstract class Victim extends Mobile:
 	
 	func attack(_victim: Mobile) -> void:
