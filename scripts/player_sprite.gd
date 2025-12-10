@@ -64,5 +64,6 @@ func _process(_delta: float) -> void:
 			play("attack")
 
 
-func _on_player_hurt() -> void:
-	play("hurt")
+func _on_player_state_changed(to_state: Mobile.State) -> void:
+	if to_state == Mobile.State.HURT:
+		play("hurt")

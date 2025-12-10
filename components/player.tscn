@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://7pt8a82uby1c"]
+[gd_scene load_steps=7 format=3 uid="uid://7pt8a82uby1c"]
 
 [ext_resource type="Script" uid="uid://5yb6hmtfxlh0" path="res://scripts/player.gd" id="1_5odhx"]
 [ext_resource type="SpriteFrames" uid="uid://bn1ykd4eybp3p" path="res://resources/player_swordmain_frames.tres" id="2_pir3r"]
 [ext_resource type="Script" uid="uid://bbus10ukmfha7" path="res://scripts/player_sprite.gd" id="3_1kub6"]
 [ext_resource type="Script" uid="uid://dpjhsnckh0m0j" path="res://scripts/sword.gd" id="5_1kub6"]
+[ext_resource type="Script" uid="uid://bchh3birml7rb" path="res://components/hitstun_timer.gd" id="5_kuobi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpcbn"]
 radius = 18.0
@@ -35,5 +36,11 @@ disabled = true
 polygon = PackedVector2Array(41, -12, 56, -4, 17, 18, 17, 23, 35, 35, 47, 36, 89, 0, 89, -12)
 disabled = true
 
+[node name="HurtstunTimer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("5_kuobi")
+
+[connection signal="state_changed" from="." to="Sprite" method="_on_player_state_changed"]
 [connection signal="frame_changed" from="Sprite" to="Sword" method="_on_sprite_frame_changed"]
 [connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]
+[connection signal="timeout" from="HurtstunTimer" to="HurtstunTimer" method="_on_timeout"]

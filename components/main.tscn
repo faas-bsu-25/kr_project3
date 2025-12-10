@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=4 uid="uid://dj7nscxoenw3k"]
+[gd_scene load_steps=6 format=4 uid="uid://dj7nscxoenw3k"]
 
 [ext_resource type="PackedScene" uid="uid://7pt8a82uby1c" path="res://components/player.tscn" id="1_6txqy"]
 [ext_resource type="TileSet" uid="uid://cxkkoljla5dwq" path="res://resources/game_tiles.tres" id="1_kl7gn"]
+[ext_resource type="Script" uid="uid://bllamr7xy6pee" path="res://scripts/dummy.gd" id="3_kl7gn"]
+[ext_resource type="Texture2D" uid="uid://bfclmt0fsiw0w" path="res://assets/node_icons/icon_character.png" id="4_0bthb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdxoy"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,3 +20,15 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_6txqy")]
 position = Vector2(960, 540)
+
+[node name="Dummy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("victim")]
+position = Vector2(1054, 388)
+script = ExtResource("3_kl7gn")
+victim = NodePath("../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dummy"]
+scale = Vector2(3, 3)
+texture = ExtResource("4_0bthb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy"]
+shape = SubResource("RectangleShape2D_pdxoy")
