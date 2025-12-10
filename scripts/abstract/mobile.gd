@@ -1,41 +1,72 @@
 @abstract class_name Mobile
 extends CharacterBody2D
 ## The name "mobile" is effectively synonymous to "mobile" entities in Minecraft,
-## which are far more commonly referred to as "mobs."
-## [br]
-## [br] A mobile can (optionally)...
-## [br] - [method Mobile.attack] attack
-## [br] - [method Mobile.on_attacked] be attacked
-## [br] - ...
-## [br]
-## [br]As for *mobilization*, movement-related code varies so greatly
-## both in triggers and in bahavioral updates that any node is
-## better off handling that logic for themselves.
-## [br]
-## [br]For any "optional" abstract function(s) that a subclass wishes to ignore,
-## it may use the `pass` keyword or leave said function(s) abstract.
+## which are far more commonly and hereby referred to as "mobs".
+##
+## A mob is stateful. 
+## A mob can exist in any one state at a time, and it emits a signal when it changes state.
+## A mob may exist in any one of the following states:
+## - Attack
+## - Death
+## - Hurt
+## - Idle
+## - Walk
+## See [enum Mobile.State] for more information.
+##
+## A mob can attack and be attacked.
+## When Mob A attacks Mob B, Mob A is referred to as the "attacker" and Mob B is referred to as the "victim".
+## Both mobs emit a respective signal during an attack. 
+## Mob A emits [signal Mobile.attacking], and Mob B emits [signal Mobile.attacked_by].
+##
+## For convenience, a mob can optionally specify a target.
+## The target may not necessarily be an attacker or victim.
+## Rather, methods are provided for a mob to act in relation to its target.
+##
+## A mob is event-driven. 
+## Rather than invoke a connected method itself, a mob should signal itself.
+## Ex. to run a code when a mob is attacked, the mob should emit its [signal Mobile.attacked_by] signal.
 
 
-## Target another Mobile, which will run code based on this mobile, its attacker.
-@abstract func attack(victim: Mobile) -> void
+## Signal used to change state. Invokes [method Mobile._on_state_changed].
+signal state_changed(to: Mobile.State)
+## Signal used when attacking a given victim. Invokes [method Mobile._on_attacking].
+signal attacking(victim: Mobile)
+## Signal used when attacked by a given attacker. Invokes [method Mobile.on_attacked_by]
+signal attacked_by(attacker: Mobile)
 
-## Targeted by another Mobile, this victim, will run code based on its attacker.
-@abstract func on_attacked(attacker: Mobile) -> void
+## The states in which a mob can exist. 
+## The usage and changing of these states is entirely dependent on the implementing subclass.
+enum State {
+	ATTACK,	## This mob is currently attacking a victim
+	DEATH,  ## This mob dead, likely as the result of being attacked.
+	HURT,	## This mob is the current victim of an attack.
+	IDLE,	## [b]Default state.[/b] This mob is not in any other state.
+	WALK,	## This mob is in motion, but not involved in an attack.
+}
+
+## The state in which the mob currently exists.
+var _state: State = State.IDLE
 
 
-## A convenience subclass of [Mobile] which only attacks with no victim implementation
-@abstract class Attacker extends Mobile:
-	
-	@abstract func attack(victim: Mobile) -> void
-	
-	func on_attacked(_attacker: Mobile) -> void:
-		pass
+func _ready() -> void:
+	# connect the mob's signals to related methods
+	self.state_changed.connect(_init_on_state_changed)
+	self.attacking.connect(_on_attacking)
+	self.attacked_by.connect(_on_attacked_by)
 
 
-## A convenience subclass of [Mobile] which only plays the victim with no attack implementation
-@abstract class Victim extends Mobile:
-	
-	func attack(_victim: Mobile) -> void:
-		pass
-	
-	@abstract func on_attacked(attacker: Mobile) -> void
+# Privately changes the mob's state before running the event-related implementation
+func _init_on_state_changed(to: Mobile.State) -> void:
+	self._state = to
+	self._on_state_changed(to)
+
+
+@abstract func _on_state_changed(to: Mobile.State) -> void
+
+@abstract func _on_attacking(victim: Mobile) -> void
+
+@abstract func _on_attacked_by(attacker: Mobile) -> void
+
+
+func get_state() -> Mobile.State:
+	return self._state

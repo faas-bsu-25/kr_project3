@@ -1,7 +1,5 @@
 [gd_scene load_steps=8 format=3 uid="uid://bmyrdpmkd37o0"]
 
-[ext_resource type="Script" uid="uid://dp2fpybnc8e5b" path="res://scripts/magic_blast.gd" id="1_6rhi3"]
-
 [sub_resource type="Gradient" id="Gradient_1ipwj"]
 colors = PackedColorArray(0.84872097, 7.82606e-05, 0.6692058, 1, 0.5561766, 0.00047716827, 0.6161361, 1)
 
@@ -28,6 +26,29 @@ scale_max = 15.0
 scale_curve = SubResource("CurveTexture_dele2")
 color_initial_ramp = SubResource("GradientTexture1D_cbm45")
 
+[sub_resource type="GDScript" id="GDScript_oebwx"]
+script/source = "@icon(\"res://assets/node_icons/icon_area_damage.png\")
+class_name MagicBlast
+extends GPUParticles2D
+
+
+func _ready() -> void:
+	print(\"A new blast is here!\")
+	SoundManager.play_sound(SoundManager.Sound.BLAST_EXPLOSION)
+	self.emitting = true
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(\"kaboom!\")
+	if body is Mobile:
+		(body as Mobile).on_attacked(null)
+
+
+func _on_finished() -> void:
+	print(\"bye!\")
+	self.queue_free()
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_x46jr"]
 radius = 14.0
 
@@ -39,7 +60,7 @@ lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1jm3h")
-script = ExtResource("1_6rhi3")
+script = SubResource("GDScript_oebwx")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

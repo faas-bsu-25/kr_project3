@@ -1,6 +1,65 @@
 [gd_scene load_steps=3 format=3 uid="uid://bekjsc75g8e8c"]
 
-[ext_resource type="Script" uid="uid://dukx6c0rl31lo" path="res://scripts/magic_missile.gd" id="1_xofb6"]
+[sub_resource type="GDScript" id="GDScript_r8tni"]
+script/source = "@icon(\"res://assets/node_icons/icon_projectile.png\")
+@tool
+class_name MagicMissile
+extends Mobile.Attacker
+
+
+@export var move_speed := 200.0
+
+@export_category(\"Sprite\")
+@export var sprite_rotation_speed := 10.0
+@export_tool_button(\"Toggle rotation\", \"ToolRotate\") var toggle_rotation := func() -> void: 
+	rotating = !rotating
+@export_tool_button(\"Reset rotation\", \"Button\") var reset_rotation := func() -> void:
+	rotating = false
+	sprite.rotation = 0
+	shape.rotation = 0
+
+var rotating := true
+
+@onready var sprite: Polygon2D = $Sprite
+@onready var shape: CollisionShape2D = $Shape
+
+
+func _ready() -> void:
+	sprite.rotation = 0;
+	shape.rotation = 0;
+	
+	if !Engine.is_editor_hint():
+		var pitch_scale := randf_range(0.5, 1.5)
+		SoundManager.play_sound_pitched(SoundManager.Sound.MISSILE_SHOOT, pitch_scale)
+
+
+func _process(delta: float) -> void:
+	if rotating:
+		sprite.rotation = fmod((sprite.rotation + (sprite_rotation_speed * delta)), 2.0 * PI)
+		shape.rotation = fmod((shape.rotation + (sprite_rotation_speed * delta)), 2.0 * PI)
+	
+	# if in the editor, DO NOT GO BEYOND THIS POINT
+	if Engine.is_editor_hint():
+		return
+	
+	# move \"forward\"
+	velocity = transform.x * move_speed * delta
+	var collision := move_and_collide(self.velocity)
+	
+	if collision:
+		if collision.get_collider() is Mobile:
+			attack(collision.get_collider() as Mobile)
+		
+		queue_free()
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
+
+
+func attack(victim: Mobile) -> void:
+	victim.on_attacked(self)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xofb6"]
 
@@ -8,17 +67,15 @@
 collision_layer = 4
 collision_mask = 2
 velocity = Vector2(0.5, 0)
-script = ExtResource("1_xofb6")
+script = SubResource("GDScript_r8tni")
 
 [node name="Sprite" type="Polygon2D" parent="."]
-rotation = 4.5347157
 color = Color(0.8057397, 0.0002570182, 0.7389163, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-4.7683716e-07, 1.4901161e-08)
-rotation = 4.5347157
 shape = SubResource("RectangleShape2D_xofb6")
 metadata/_edit_lock_ = true
 

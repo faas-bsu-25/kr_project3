@@ -6,7 +6,7 @@ extends Sprite2D
 
 
 func _ready() -> void:
-	self.visible = player_sprite.sprite_frames == player_sprite.PRIEST_FRAMES
+	_on_player_sprite_frames_changed()
 
 
 func _on_player_sprite_frames_changed() -> void:

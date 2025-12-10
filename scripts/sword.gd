@@ -1,5 +1,5 @@
 @icon("res://assets/node_icons/icon_sword.png")
-class_name SwordHurtbox
+class_name Sword
 extends Area2D
 
 
@@ -29,7 +29,7 @@ func _on_sprite_frame_changed() -> void:
 		return
 	
 	# Disable hurtboxes and return if the sprite isn't attacking
-	if player.state != Player.State.ATTACK or sprite.animation != "attack_2":
+	if player.get_state() != Player.State.ATTACK or sprite.animation != "attack":
 		if !box_one.disabled:
 			box_one.disabled = true
 		if !box_two.disabled:
@@ -40,16 +40,16 @@ func _on_sprite_frame_changed() -> void:
 	match (sprite.frame):
 		2:
 			box_one.disabled = false
-			SoundManager.play_sound(SoundManager.Sound.SWORD_SWING)
+			Sounds.play_sound(Sounds.Sound.SWORD_SWING)
 		3:
 			box_one.disabled = true
 		5:
 			box_two.disabled = false
-			SoundManager.play_sound(SoundManager.Sound.SWORD_SWING)
+			Sounds.play_sound(Sounds.Sound.SWORD_SWING)
 		7:
 			box_two.disabled = true
 
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Mobile:
-		player.attack(body as Mobile)
+		player.attacking.emit(body as Mobile)

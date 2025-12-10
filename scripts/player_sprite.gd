@@ -22,7 +22,7 @@ const SWORDMAIN_FRAMES = preload("res://resources/player_swordmain_frames.tres")
 @onready var player: Player = self.get_parent()
 ## The sword hurtbox, which is dependent upon animation frames
 ## Given this dependency, the sprite will signal to the sword on the desired frames
-@onready var sword_hurtbox: SwordHurtbox = player.get_node("SwordHurtbox");
+@onready var sword: Sword = player.get_node("Sword")
 
 
 func _process(_delta: float) -> void:
@@ -42,16 +42,16 @@ func _process(_delta: float) -> void:
 	
 	# Flip sprite if moving left + reverse
 	# ALSO FLIP (scale) HURTBOX
-	if player.state != Player.State.HURT:
+	if player.get_state() != Player.State.HURT:
 		if player.velocity.x < 0:
 			self.flip_h = true
-			sword_hurtbox.scale.x = -1
+			sword.scale.x = -1
 		elif player.velocity.x > 0:
 			self.flip_h = false
-			sword_hurtbox.scale.x = 1
+			sword.scale.x = 1
 	
 	# Change animation if state calls for it
-	match player.state:
+	match player.get_state():
 		Player.State.IDLE:
 			play("idle")
 		Player.State.WALK:
@@ -61,7 +61,7 @@ func _process(_delta: float) -> void:
 		#Player.State.HURT:
 			#play("hurt")
 		Player.State.ATTACK:
-			play("attack_2")
+			play("attack")
 
 
 func _on_player_hurt() -> void:
